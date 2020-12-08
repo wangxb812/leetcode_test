@@ -28,4 +28,13 @@ public:
         }
         return ret;
     }
+    //递归形式,但是内存可能超限
+    double Power_3(double base, int exponent){
+        if(exponent == 0)   return 1;
+        if(exponent == 1)   return base;
+        double res = Power_3(base,exponent>>1);
+        res *=res;
+        if(exponent & 0x1 ==1)  res *=base;
+        return res;
+    }
 };
