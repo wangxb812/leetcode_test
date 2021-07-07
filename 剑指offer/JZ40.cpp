@@ -1,5 +1,6 @@
 //一个整型数组里除了两个数字之外，其他的数字都出现了两次。请写程序找出这两个只出现一次的数字。
 #include<vector>
+#include<map>
 using namespace std;
 class Solution {
 public:
@@ -33,5 +34,51 @@ public:
     bool IsBit1(int num,int index){
         num=num>>index;
         return num&1;
+    }
+//using hash-table==C++ unordered_map
+    vector<int> FindNumsAppearOnce(vector<int>& array) {
+        int length=array.size();
+        vector<int> res;
+        map<int,int>mp;
+        for(int i=0;i<length;i++){
+            mp[i]=array[i];
+
+        }
+    }
+//using sort
+    vector<int> FindNumsAppearOnce(vector<int>& array)
+    {
+        int length=array.size();
+        vector<int> res;
+        sort(array.begin(),array.end());
+        for(int i=0;i<length;i++){
+            if(array[i]==array[i+1])    i++;
+            else{
+                res.push_back(array[i]);
+            }
+        }
+        return res;
+    }
+    //using xor & STL
+    vector<int> FindNumsAppearOnce(vector<int>& array){
+        int length = array.size();
+        vector<int>res;
+        if(length==0)   return;
+        int resXOR=0;
+        for(int i=0;i<length;i++){
+            resXOR^=array[i];
+        }
+        int index = FindFirstBitIs1(resXOR);
+        int num1=0,num2=0;
+        for(int i=0;i<length;i++)
+        {
+            if(IsBit1(array[i],index))   num1^=array[i];
+            else
+            {
+                num2^=array[i];
+            }
+        }
+        res.push_back(num1);
+        res.push_back(num2);
     }
 };   
