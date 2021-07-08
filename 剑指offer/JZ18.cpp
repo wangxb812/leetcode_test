@@ -17,11 +17,10 @@ public:
         TreeNode * temp = pRoot->left;
         pRoot->left = pRoot->right;
         pRoot->right = temp;
-        if(pRoot->left){
+        if(pRoot->left)
             Mirror(pRoot->left);
         if(pRoot->right)
             Mirror(pRoot->right);
-        }
     }
     //循环实现
     void Mirror_2(TreeNode *pRoot){
