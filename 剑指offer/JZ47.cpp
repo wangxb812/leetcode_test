@@ -1,15 +1,12 @@
-/*
- * @Author: m1ng
- * @Date: 2021-07-11 19:38:18
- * @LastEditors: m1ng
- * @LastEditTime: 2021-07-11 20:10:02
- * @FilePath: \leetcode_test\剑指offer\JZ47.cpp
- * @Description: header
- */
+//JZ47
+#include<vector>
+using namespace std;
 class Solution {
 public:
-    int Sum_Solution(int n) {
-        int ret;
-        
+    int Sum_Solution(int n) {
+        int sum=0;
+        //逻辑与，如果前面为假，则后面不计算
+        sum && (sum+=Sum_Solution(n-1));
+        return sum;
     }
 };
