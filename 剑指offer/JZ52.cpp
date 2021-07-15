@@ -12,9 +12,6 @@ public:
      */
     bool match(string str, string pattern) {
         bool ret = true;
-        int len1=str.size(),len2=pattern.size();
-        //'aaa''a*a'
-        if(len1==0 ||len2==0)   return false;
         return matchCore(str,pattern);
     }
     bool matchCore(string str, string pattern){
