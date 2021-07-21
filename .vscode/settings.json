@@ -28,6 +28,7 @@
         "xutility": "cpp",
         "random": "cpp",
         "unordered_map": "cpp",
-        "map": "cpp"
+        "map": "cpp",
+        "stack": "cpp"
     }
 }
