@@ -29,6 +29,7 @@
         "random": "cpp",
         "unordered_map": "cpp",
         "map": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "iostream": "cpp"
     }
 }
