@@ -6,3 +6,10 @@
  * @FilePath: \leetcode_test\CD7.cpp
  * @Description: header
  */
+#include<stack>
+using namespace std;
+class Solution
+{
+public:
+    stack<int> st;
+};
