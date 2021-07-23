@@ -30,6 +30,8 @@
         "unordered_map": "cpp",
         "map": "cpp",
         "stack": "cpp",
-        "iostream": "cpp"
-    }
+        "iostream": "cpp",
+        "queue": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
 }
