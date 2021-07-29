@@ -2,29 +2,20 @@
  * @Author: m1ng
  * @Date: 2021-07-29 00:13:15
  * @LastEditors: m1ng
- * @LastEditTime: 2021-07-29 01:31:12
+ * @LastEditTime: 2021-07-29 23:18:21
  * @FilePath: \leetcode_test\程序员代码面试指南\CD16.cpp
  * @Description: header
  */
 #include <stack>
 #include <iostream>
+#include <vector>
+#include "algorithm"
 using namespace std;
-int getOneNumber()
-{
-
-}
 int main()
 {
     int n,m;
     cin>>n>>m;
 }
-#include<iostream>
-#include<vector>
-#include<stack>
-#include<algorithm>
-
-using namespace std;
-
 int getMin(vector<vector<int>>& map) {
 
     int MAX = 0;
