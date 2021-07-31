@@ -2,7 +2,7 @@
  * @Author: m1ng
  * @Date: 2021-07-31 01:26:46
  * @LastEditors: m1ng
- * @LastEditTime: 2021-07-31 17:34:34
+ * @LastEditTime: 2021-07-31 17:46:25
  * @FilePath: \leetcode_test\程序员代码面试指南\CD49.cpp
  * @Description: header
  */
@@ -66,7 +66,33 @@ list_node * remove_last_kth_node(list_node * head, int K)
      }
 return node;
 }
-
+list_node * remove_last_kth_node(list_node * head, int K)
+{
+     if(head==nullptr || K<1)
+     {
+         return head;
+     }
+    list_node *cur= head;
+    while(cur)
+    {
+        K--;
+        cur=cur->next;
+    }
+    if(K==0)
+    {
+        head=head->next;
+    }
+    if(K<0)
+    {
+        cur = head;
+        while(++K!=0)
+        {
+            cur = cur->next;
+        }
+        cur->next = cur->next->next;
+    }
+    return head;
+}
 void print_list(list_node * head)
 {
     while (head != NULL) {
