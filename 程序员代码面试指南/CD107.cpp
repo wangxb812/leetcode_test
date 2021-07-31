@@ -2,7 +2,7 @@
  * @Author: m1ng
  * @Date: 2021-07-31 18:00:36
  * @LastEditors: m1ng
- * @LastEditTime: 2021-08-01 02:05:59
+ * @LastEditTime: 2021-08-01 02:07:24
  * @FilePath: \leetcode_test\程序员代码面试指南\CD107.cpp
  * @Description: header
  */
@@ -121,8 +121,6 @@ double_list_node * reverse_double_list(double_list_node * head)
         head = next;
     }
     return pre;
-
-
 }
 
 void print_list(list_node * head)
