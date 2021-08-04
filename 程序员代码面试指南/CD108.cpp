@@ -2,7 +2,7 @@
  * @Author: m1ng
  * @Date: 2021-08-01 02:07:31
  * @LastEditors: m1ng
- * @LastEditTime: 2021-08-02 00:44:21
+ * @LastEditTime: 2021-08-05 00:58:34
  * @FilePath: \leetcode_test\程序员代码面试指南\CD108.cpp
  * @Description: header
  */
@@ -56,11 +56,44 @@ list_node * reverse_list(list_node * head, int L, int R)
             next = head->next;
             pre = head;
             head = next;
-            pre = head;
         }
         i++;
     }
     return pre;
+}
+
+list_node * reverse_list(list_node * head, int L, int R)
+{
+    //////在下面完成代码
+    if(head == nullptr || R < L || L < 1)
+        return head;
+    list_node * p = head;
+    list_node * pre = nullptr;//
+    list_node * pos = nullptr;
+    int len = 0;
+    while(p){
+        len++;
+        pre = (len == L -1 ? p : pre);
+        pos = (len == R + 1 ? p : pos);
+        p = p->next;
+    }
+    if(R > len)
+        return head;
+    list_node *node1 = (pre == nullptr ? head : pre->next);
+    list_node *node2 = node1->next;
+    node1->next = pos;
+    list_node *next = nullptr;
+    while(node2 != pos){
+        next = node2->next;
+        node2->next = node1;
+        node1 = node2;
+        node2 = next;
+    }
+    if(pre != nullptr){
+        pre->next = node1;
+        return head;
+    }
+    return node1;
 }
 
 void print_list(list_node * head)
