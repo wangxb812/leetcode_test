@@ -2,7 +2,7 @@
  * @Author: m1ng
  * @Date: 2021-08-05 01:09:57
  * @LastEditors: m1ng
- * @LastEditTime: 2021-08-07 23:17:54
+ * @LastEditTime: 2021-08-07 23:35:56
  * @FilePath: \leetcode_test\程序员代码面试指南\CD109.cpp
  * @Description: header
  */
@@ -39,6 +39,14 @@ Node* josephuKill(Node *head,int m)
     }
     return head;
 }
+int getLive(int i,int m)
+{
+    if(i==1)
+    {
+        return 1;
+    }
+    return (getLive(i-1,m)+m-1)%i+1;
+}
 
 Node* josephuKill_2(Node *head,int m)
 {
@@ -47,7 +55,7 @@ Node* josephuKill_2(Node *head,int m)
         return head;
     }
     Node *cur = head->next;
-    int temp=1;
+    int tmp=1;
     while(cur!=head)
     {
         tmp++;
@@ -61,14 +69,7 @@ Node* josephuKill_2(Node *head,int m)
     head->next=head;
     return head;
 }
-int getLive(int i,int m)
-{
-    if(i==1)
-    {
-        return 1;
-    }
-    else (getLive(i-1,m)+m-1)%i+1;
-}
+
 
 int main()
 {
