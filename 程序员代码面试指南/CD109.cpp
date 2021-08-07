@@ -2,11 +2,10 @@
  * @Author: m1ng
  * @Date: 2021-08-05 01:09:57
  * @LastEditors: m1ng
- * @LastEditTime: 2021-08-07 22:47:41
+ * @LastEditTime: 2021-08-07 23:17:54
  * @FilePath: \leetcode_test\程序员代码面试指南\CD109.cpp
  * @Description: header
  */
-#include<list>
 #include<iostream>
 using namespace std;
 struct Node
@@ -18,7 +17,7 @@ Node* josephuKill(Node *head,int m)
 {
     if(head == nullptr || head->next == head || m<1)
     {
-        return 0;
+        return head;
     }
     Node *last = head;
     while (last->next!=head)
@@ -39,6 +38,36 @@ Node* josephuKill(Node *head,int m)
         head=head->next;
     }
     return head;
+}
+
+Node* josephuKill_2(Node *head,int m)
+{
+    if(head == nullptr || head->next == head || m<1)
+    {
+        return head;
+    }
+    Node *cur = head->next;
+    int temp=1;
+    while(cur!=head)
+    {
+        tmp++;
+        cur=cur->next;
+    }
+    tmp=getLive(tmp,m);
+    while(--tmp!=0)
+    {
+        head=head->next;
+    }
+    head->next=head;
+    return head;
+}
+int getLive(int i,int m)
+{
+    if(i==1)
+    {
+        return 1;
+    }
+    else (getLive(i-1,m)+m-1)%i+1;
 }
 
 int main()
