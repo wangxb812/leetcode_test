@@ -2,7 +2,7 @@
  * @Author: m1ng
  * @Date: 2021-08-05 01:09:57
  * @LastEditors: m1ng
- * @LastEditTime: 2021-08-07 23:35:56
+ * @LastEditTime: 2021-08-07 23:36:50
  * @FilePath: \leetcode_test\程序员代码面试指南\CD109.cpp
  * @Description: header
  */
@@ -93,6 +93,5 @@ int main()
     p->next = head;
     Node* node1 = josephuKill(head, m);
     cout << node1->val << endl;
-    system("pause");
     return 0;
 }
