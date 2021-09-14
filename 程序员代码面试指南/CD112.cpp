@@ -32,11 +32,35 @@ list_node * input_list(void)
 
 list_node * check(list_node * head)
 {
-    if(head==nullptr || head->next==nullptr)
-        return true;
-
-
-
+    if(head==nullptr || head->next==nullptr){
+        cout<<"true";
+        return head ;
+    }
+    list_node *right=head->next;
+    list_node* p =head;
+    while(p->next !=nullptr && p->next->next!=nullptr)
+    {
+        right = right->next;
+        p=p->next->next;
+    }
+    stack<int>st;
+    while(right!=nullptr)
+    {
+        st.push(right->val);
+        right=right->next;
+    }
+    while(!st.empty())
+    {
+        if(head->val!=st.top())
+        {
+            cout<<"false";
+            return head ;
+        }
+        st.pop();
+        head=head->next;
+    }
+    cout<<"true";
+    return head ;
 }
 
 
