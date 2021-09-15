@@ -1,3 +1,5 @@
+#include<vector>
+#include<iostream>
 # include <bits/stdc++.h>
 using namespace std;
 
@@ -35,8 +37,41 @@ list_node * input_list(void)
 list_node * list_partition(list_node * head, int pivot)
 {
     //////在下面完成代码
-
-
+    list_node *p =head;
+    vector<int> xiaoyu;
+    vector<int> dengyu;
+    vector<int> dayu;
+    while(p)
+    {
+        if(p->val==pivot)
+        {
+            dengyu.push_back(p->val);
+        }
+        else if(p->val>pivot)
+        {
+            dayu.push_back(p->val);
+        }
+        else xiaoyu.push_back(p->val);
+        
+        p=p->next;
+    }
+    int len = xiaoyu.size();
+    p=head;
+    for(int i=0;i<len;i++)
+    {
+        cout<<xiaoyu[i]<<' ';
+    }
+    len=dengyu.size();
+    for(int i=0;i<len;i++)
+    {
+        cout<<dengyu[i]<<' ';
+    }
+    len=dayu.size();
+    for(int i=0;i<len;i++)
+    {
+        cout<<dayu[i]<<' ';
+    }
+    return head;
 }
 
 
