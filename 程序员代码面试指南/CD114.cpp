@@ -1,5 +1,4 @@
 # include <bits/stdc++.h>
-#include <vector>
 using namespace std;
 
 struct list_node{
@@ -30,36 +29,61 @@ list_node * input_list(int n)
 }
 
 
-list_node * add_list(list_node * head1, list_node * head2)
+list_node* revered_list(list_node* head){
+    if(head == NULL || head->next == NULL) return head;
+    else{
+        list_node* temp = head->next;
+        head->next = NULL;
+        list_node* new_head = revered_list(temp);
+        temp->next = head;
+        return new_head;
+    }
+}
+
+list_node * add_list(list_node * head1, list_node * head2, int n, int m)
 {
-    list_node * newhead = new list_node();
-    list_node * p=head1;
-    int len1=0,len2=0;
-    int head1=0,head2=0;
-    while(p)
-    {
-        head1=head1*10+p->val;
-        p=p->next;
+    //////在下面完成代码
+    head1 = revered_list(head1);
+    head2 = revered_list(head2);
+    int cur = 0;
+    int flag = 0;
+    int num1, num2, new_num;
+    list_node* ans = new list_node();
+    ans->val = 0;
+    ans->next = NULL;
+    list_node* cur_node = ans;
+    while(cur < n || cur < m){
+        if(head1){
+            num1 = head1->val;
+            head1 = head1->next;
+        }
+        else 
+            num1 = 0;
+        if(head2){
+            num2 = head2->val;
+            head2 = head2->next;
+        }
+        else 
+            num2 = 0;
+        new_num = num1 + num2 + flag;
+        if(new_num >= 10) flag = 1;
+        else flag = 0;
+        new_num = new_num % 10;
+        list_node* temp = new list_node();
+        temp->val = new_num;
+        temp->next = NULL;
+        cur_node->next = temp;
+        cur_node = cur_node->next;
+        cur++;
     }
-    p=head2;
-    while(p)
-    {
-        head2=head2*10+p->val;
-        p=p->next;
+    if(flag){
+        list_node* temp = new list_node();
+        temp->val = 1;
+        temp->next = NULL;
+        cur_node->next = temp;
     }
-    int res=head1+head2;
-    vector<int> ret;
-    while(res>=10)
-    {
-        ret.push_back(res%10);
-        res/=10;
-    }
-    for(int i=0;i<ret.size();i++)
-    {
-        newhead->val=ret[ret.size()-i-1];
-        newhead = newhead->next;
-    }
-    return newhead;
+    ans = revered_list(ans->next);
+    return ans;
 }
 
 void print_list(list_node * head)
@@ -70,12 +94,13 @@ void print_list(list_node * head)
     }
     puts("");
 }
-    int n, m;
+
 int main ()
 {
+    int n, m;
     scanf("%d%d", &n, &m);
     list_node * head1 = input_list(n), * head2 = input_list(m);
-    list_node * new_head = add_list(head1, head2);
+    list_node * new_head = add_list(head1, head2,n,m);
     print_list(new_head);
     return 0;
 }
