@@ -1,4 +1,5 @@
 # include <bits/stdc++.h>
+#include <stack>
 using namespace std;
 
 struct list_node{
@@ -32,8 +33,19 @@ list_node * input_list()
 
 list_node * reverse_knode(list_node * head1, int K)
 {
-    //////在下面完成代码
+    list_node *p=head1;
+    int pos = 0;
+    while(p)
+    {
+        if(pos<K)
+        {
 
+            pos++;
+        }
+        else{
+            pos=0;
+        }
+    }
 
 }
 
