@@ -34,26 +34,40 @@ list_node * input_list()
 list_node * reverse_knode(list_node * head1, int K)
 {
     if(K<2) return head1;
-    list_node *p=head1;
+    list_node *cur =head1;
+    list_node *start =nullptr;
+    list_node *pre = nullptr;
+    list_node *next = nullptr;
     stack<int>st;
-    int pos = 0;
-    while(head1)
+    int count = 1;
+    while(cur!=nullptr)
     {
-        if(pos<K)
+        next = cur->next;
+        if(count == K)
         {
-            st.push(p->val);
-            pos++;
-            p=p->next;
-        }
-        else if(pos == K){
-            for(int i=0;i<pos;i++)
+            start = pre ==nullptr?head1:pre->next;
+            head1 = pre == nullptr?cur :head1;
+            list_node *n1 = start;
+            list_node *n2 = start->next;
+            list_node *n3 = nullptr;
+            while(n2 != next)
             {
-                head1->val=st.top();
-                st.pop();
-                head1=head1->next;
+                n3= n2->next;
+                n2->next =n1;
+                n1 = n2;
+                n2 = n3;
             }
-            pos=0;
+            if(pre!=nullptr)
+            {
+                pre->next = cur;
+            }
+            start->next=next;
+            pre = start;
+            count = 0;
         }
+        count ++;
+        cur = next;
+        
     }
     return head1;
 }
