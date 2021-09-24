@@ -33,20 +33,29 @@ list_node * input_list()
 
 list_node * reverse_knode(list_node * head1, int K)
 {
+    if(K<2) return head1;
     list_node *p=head1;
+    stack<int>st;
     int pos = 0;
-    while(p)
+    while(head1)
     {
         if(pos<K)
         {
-
+            st.push(p->val);
             pos++;
+            p=p->next;
         }
-        else{
+        else if(pos == K){
+            for(int i=0;i<pos;i++)
+            {
+                head1->val=st.top();
+                st.pop();
+                head1=head1->next;
+            }
             pos=0;
         }
     }
-
+    return head1;
 }
 
 void print_list(list_node * head)
