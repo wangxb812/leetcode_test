@@ -1,4 +1,5 @@
 # include <bits/stdc++.h>
+#include <set>
 using namespace std;
 
 struct list_node{
@@ -32,9 +33,13 @@ list_node * input_list()
 
 list_node * remove_rep(list_node * head)
 {
-    //////在下面完成代码
+    set<int> st ;
+    if(head == nullptr) return head;
+    list_node *pre = head;
+    list_node *p = head->next;
+    st.add(head->value);
 
-
+    return head;
 }
 
 void print_list(list_node * head)
