@@ -33,12 +33,23 @@ list_node * input_list()
 
 list_node * remove_rep(list_node * head)
 {
-    set<int> st ;
+    set<int> st;
     if(head == nullptr) return head;
-    list_node *pre = head;
-    list_node *p = head->next;
-    st.add(head->value);
-
+    list_node *pre = nullptr;
+    list_node *p = head;
+    int flag =0;
+    while(p != nullptr)
+    {
+        if(st.count(p->val)==0)
+        {
+            st.insert(p->val);
+            pre = p;
+        }
+        else{
+            pre->next = p->next;
+        }
+        p=p->next;
+    }
     return head;
 }
 
