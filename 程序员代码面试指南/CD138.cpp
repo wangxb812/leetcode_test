@@ -32,9 +32,17 @@ list_node * input_list()
 
 list_node * remove_value(list_node * head, int num)
 {
-    //////在下面完成代码
-
-
+    list_node *cur=head,*pre = nullptr;
+    while(cur!=nullptr)
+    {
+        if(cur->val==num)
+        {
+            pre->next=cur->next;
+        }
+        pre = cur;
+        cur=cur->next;
+    }
+    return head;
 }
 
 void print_list(list_node * head)
