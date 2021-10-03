@@ -2,7 +2,7 @@
  * @Author: m1ng
  * @Date: 2021-10-03 22:13:28
  * @LastEditors: m1ng
- * @LastEditTime: 2021-10-04 00:32:13
+ * @LastEditTime: 2021-10-04 00:33:33
  * @FilePath: \leetcode_test\程序员代码面试指南\CD156.cpp
  * @Description: header
  */
@@ -62,6 +62,7 @@ void inOrderToQueue(BST *root,queue<int> q)
 double_list_node * convert(BST * root)
 {
     queue<int> q;
+    inOrderToQueue(root,q);
     double_list_node * ret= nullptr;
     if(root==nullptr)   return nullptr;
     ret->val = q.front();
