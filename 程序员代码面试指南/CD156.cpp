@@ -2,7 +2,7 @@
  * @Author: m1ng
  * @Date: 2021-10-03 22:13:28
  * @LastEditors: m1ng
- * @LastEditTime: 2021-10-04 00:39:53
+ * @LastEditTime: 2021-10-04 00:45:33
  * @FilePath: \leetcode_test\程序员代码面试指南\CD156.cpp
  * @Description: header
  */
@@ -13,6 +13,9 @@ using namespace std;
 struct double_list_node{
     int val;
     struct double_list_node * pre, * next;
+    double_list_node(int Val){
+        val  = Val;
+    }
 };
 
 struct BST{
@@ -49,28 +52,27 @@ BST * input_BST()
     }
     return root;
 }
+queue<int> q;
 
-void inOrderToQueue(BST *root,queue<int> q)
+void inOrderToQueue(BST *root)
 {
     if(root == nullptr)
         return;
-    inOrderToQueue(root->lch,q);
+    inOrderToQueue(root->lch);
     q.push(root->val);
-    inOrderToQueue(root->rch,q);
+    inOrderToQueue(root->rch);
 }
 
 double_list_node * convert(BST * root)
 {
-    queue<int> q;
-    inOrderToQueue(root,q);
+    inOrderToQueue(root);
     double_list_node * head= nullptr;
-    if(root==nullptr)   return nullptr;
-    double_list_node *tmp;
+    double_list_node *tmp = nullptr;
     while(!q.empty())
     {
         int top = q.front();
         q.pop();
-        tmp->val = top;
+        tmp = new double_list_node(top);
         tmp->pre=head;
         if(head!=nullptr)
         {
@@ -79,9 +81,9 @@ double_list_node * convert(BST * root)
         head = tmp;
     }
     tmp->next = nullptr;
-    while(head->pre == nullptr)
+    while(head->pre != nullptr)
     {
-        head= head->pre;
+        head = head->pre;
     }
     return head;
 }
