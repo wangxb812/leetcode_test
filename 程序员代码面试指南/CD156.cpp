@@ -2,7 +2,7 @@
  * @Author: m1ng
  * @Date: 2021-10-03 22:13:28
  * @LastEditors: m1ng
- * @LastEditTime: 2021-10-04 00:33:33
+ * @LastEditTime: 2021-10-04 00:39:53
  * @FilePath: \leetcode_test\程序员代码面试指南\CD156.cpp
  * @Description: header
  */
@@ -63,23 +63,27 @@ double_list_node * convert(BST * root)
 {
     queue<int> q;
     inOrderToQueue(root,q);
-    double_list_node * ret= nullptr;
+    double_list_node * head= nullptr;
     if(root==nullptr)   return nullptr;
-    ret->val = q.front();
-    ret->pre = nullptr;
-    double_list_node *next = nullptr;
-    double_list_node *pre = nullptr;
-    ret->next = next;
+    double_list_node *tmp;
     while(!q.empty())
     {
-        next->val = q.front();
+        int top = q.front();
         q.pop();
-        pre = next;
-        next->pre = pre;
-        next = next->next;
+        tmp->val = top;
+        tmp->pre=head;
+        if(head!=nullptr)
+        {
+            head->next=tmp;
+        }
+        head = tmp;
     }
-
-    return ret;
+    tmp->next = nullptr;
+    while(head->pre == nullptr)
+    {
+        head= head->pre;
+    }
+    return head;
 }
 
 void print_double_list(double_list_node * head)
