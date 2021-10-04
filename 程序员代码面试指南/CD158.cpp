@@ -36,14 +36,28 @@ list_node * input_list(void)
 
 list_node * insert_num(list_node * head, int num)
 {
-    list_node *p = head;
-    if(head == nullptr) return head;
-    while(p!=nullptr)
+    list_node *pre = head;
+    list_node *cur = head->next;
+    list_node *p =new list_node();
+    p->val = num;
+    p->next = nullptr;
+    if(head == nullptr)
     {
-        
+        p->next = p;
+        return head;
+    } 
+    while(cur!=head)
+    {
+        if(pre->val<=num && cur->val>=num)
+        {
+            break;
+        }
+        pre = cur;
+        cur = cur->next;
     }
-
-
+    pre->next = p;
+    p->next = cur;
+    return head->val<num ? head : p;
 }
 
 
