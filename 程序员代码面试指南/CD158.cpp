@@ -36,8 +36,12 @@ list_node * input_list(void)
 
 list_node * insert_num(list_node * head, int num)
 {
-    //////在下面完成代码
-
+    list_node *p = head;
+    if(head == nullptr) return head;
+    while(p!=nullptr)
+    {
+        
+    }
 
 
 }
