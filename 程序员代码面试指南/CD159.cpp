@@ -34,26 +34,30 @@ list_node * input_list(void)
 
 list_node * merge_list(list_node * head1, list_node * head2)
 {
-    list_node * p = nullptr;
-    list_node * phead = p;
-    if(head1 == nullptr)    return head2;
-    if(head2 == nullptr)    return head1;
-    phead = head1->val<head2->val?head1:head2;
-    while(head1!=nullptr && head2!=nullptr)
+    list_node * head = nullptr;
+    if(head1 ==nullptr || head2==nullptr)   return head1==nullptr?head1:head2;
+    head = head1->val<head2->val?head1:head2;
+    list_node *cur1 = head == head1 ? head1:head2;
+    list_node *cur2 = head == head1 ? head2:head1;
+    list_node *pre = nullptr;
+    list_node *next = nullptr;
+    while(cur1!=nullptr && cur2!=nullptr)
     {
-        if(head1->val>head2->val)
+        if(cur1->val<=cur2->val)
         {
-            phead->val=head2->val;
-            phead->next=head2->next;
-            head2 = head2->next;
+            pre = cur1;
+            cur1=cur1->next;
         }
         else{
-            phead->val=head1->val;
-            phead->next=head1->next;
-            head1 = head1->next;
+            next = cur2->next;
+            pre->next = cur2;
+            cur2->next = cur1;
+            pre =cur2;
+            cur2 = next;
         }
     }
-    return p;
+    pre->next = cur1 == nullptr ?cur2 : cur1;
+    return head;
 }
 
 
